@@ -223,7 +223,7 @@ def index_of_first_negative(numbers):
       -- a sequence of numbers
     What goes out: Returns the INDEX of the first negative number
       in the given sequence of numbers, or -1 if the sequence
-      contains no negative numbers.
+      contains no negative numbers
       Note: "first" negative number means the negative number
       whose index is smallest -- see the examples.
     Side effects: None.
