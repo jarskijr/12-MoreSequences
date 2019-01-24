@@ -14,23 +14,23 @@ import rosegraphics as rg
 
 def main():
     """ Calls the various   TEST   functions in this module. """
-    run_test_make_simple_list()
-    run_test_make_simple_string()
-    run_test_make_less_simple_string()
+    # run_test_make_simple_list()
+    # run_test_make_simple_string()
+    # run_test_make_less_simple_string()
 
     # -------------------------------------------------------------------------
-    # TODO: 8. Uncomment the tests below before working _TODO_ 9.
+    # DONE: 8. Uncomment the tests below before working _TODO_ 9.
     #   They launch annoying rg.RoseWindows on each run that you don't want
     #   until you get to _TODO_ 9 and _TODO_ 10.
     # -------------------------------------------------------------------------
     # run_test_draw_shapes()
-    # run_test_rectangles_from_circles()
+    run_test_rectangles_from_circles()
 
 
 def run_test_make_simple_list():
     """ Tests the   make_simple_list    function. """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  make_simple_list  function defined below.
     #   Include at least **   2   ** tests.
     #
@@ -143,7 +143,7 @@ def make_simple_string(m, n):
 def run_test_make_less_simple_string():
     """ Tests the   make_less_simple_string    function. """
     # -------------------------------------------------------------------------
-    # TODO: 6. Implement this TEST function.
+    # DONE: 6. Implement this TEST function.
     #   It TESTS the  make_less_simple_string  function defined below.
     #   Include at least **   2   ** tests.
     #
@@ -154,8 +154,28 @@ def run_test_make_less_simple_string():
     print('Testing the   make_less_simple_string   function:')
     print('--------------------------------------------------')
 
+    # Test 1:
+    expected = '0-1-2-3-4'
+    actual = make_less_simple_string(0, 4)
+    print('Expected:', expected)
+    print('Actual:  ', actual)
+
+    # Test 2
+    expected = '3-4-5-6-7-8-9-10'
+    actual = make_less_simple_string(3, 10)
+    print('Expected:', expected)
+    print('Actual:  ', actual)
+
 
 def make_less_simple_string(m, n):
+    string = ''
+    for k in range(m, n + 1):
+        string = (string + str(k))
+        if k == n:
+            return string
+        else:
+            string = string + '-'
+    return string
     """
     What comes in:
       -- a positive integer m
@@ -178,7 +198,7 @@ def make_less_simple_string(m, n):
       :type n: int
     """
     # -------------------------------------------------------------------------
-    # TODO: 7. Implement and test this function.
+    # DONE: 7. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # -------------------------------------------------------------------------
 
@@ -238,6 +258,9 @@ def run_test_draw_shapes():
 
 
 def draw_shapes(shapes, window):
+    for k in range(len(shapes)):
+        shapes[k].attach_to(window)
+    window.render(0.3)
     """
     What comes in:
       -- a sequence of rg.Shape objects
@@ -261,7 +284,7 @@ def draw_shapes(shapes, window):
       :type window:  rg.RoseWindow
     """
     # -------------------------------------------------------------------------
-    # TODO: 9. Implement and test this function.
+    # DONE: 9. Implement and test this function.
     #             *** Make sure you do _TODO_ 8 in main first! ***
     # The testing code is already written for you; you enabled it via _TODO_ 8.
     #
@@ -357,6 +380,16 @@ def run_test_rectangles_from_circles():
 
 
 def rectangles_from_circles(circles):
+    list_of_circles = []
+    for k in range(len(circles)):
+        radius = circles[k].radius
+        center = circles[k].center
+        upper_left_corner = rg.Point(center.x - radius, center.y - radius)
+        lower_right_corner = rg.Point(center.x + radius, center.y + radius)
+        list_of_circles.append(rg.Rectangle(upper_left_corner, lower_right_corner))
+    return list_of_circles
+
+
     """
     See   rectangles_from_circles.pdf   in this project for pictures
     that may help you better understand the following specification:
@@ -373,7 +406,7 @@ def rectangles_from_circles(circles):
       :rtype: list of rg.Rectangles
     """
     # -------------------------------------------------------------------------
-    # TODO: 10. Implement and test this function.
+    # DONE: 10. Implement and test this function.
     #     The testing code is already written for you (above).
     #
     ###########################################################################
